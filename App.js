@@ -1,49 +1,178 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { View, Text, Button, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import Home from './src/components/Home'
+import Login from './src/components/Login'
+import Signup from './src/components/SignUp'
+import BottomNav from './src/components/BottomNav'
+import ServiceList from './src/components/ServiceList'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const AppNavigator = createStackNavigator({
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+Login: {
+  screen: Login,
+},
+Signup: {
+    screen: Signup,
+},
+  BottomNav: {
+    screen: BottomNav,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+}, {
+    initialRouteName: 'BottomNav',
+  });
+
+
+
+
+export default createAppContainer(AppNavigator);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const bottomAppBar = createMaterialBottomTabNavigator({
+  Home: {
+    screen: Home,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  Login: {
+    screen: Login
   },
-});
+  Signup: {
+    screen: Signup
+  },
+  ServiceList: {
+    screen: ServiceList,
+  },
+}, {
+    initialRouteName: 'Home',
+    activeColor: '#f0edf6',
+    inactiveColor: '#3e2465',
+    barStyle: { backgroundColor: '#694fad' },
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class HomeScreen extends React.Component {
+//   static navigationOptions = {
+//     headerLeft: (
+//       <Button
+//         onPress={() => alert('This is a button!')}
+//         title="Back"
+//         color="grey"
+//       />
+//     ),
+//   };
+//   render() {
+//     return (
+
+//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+
+//         <TouchableOpacity style={styles.button} onPress={() => {
+//           this.props.navigation.dispatch(StackActions.reset({
+//             index: 0,
+//             actions: [
+//               NavigationActions.navigate({ routeName: 'Login' })
+//             ],
+//           }))
+//         }}>
+//           <Text style={styles.text}>
+//             Login
+//             </Text>
+//         </TouchableOpacity>
+
+
+//         <TouchableOpacity style={styles.button} onPress={() => {
+//           this.props.navigation.dispatch(StackActions.reset({
+//             index: 0,
+//             actions: [
+//               NavigationActions.navigate({ routeName: 'Signup' })
+//             ],
+//           }))
+//         }}>
+//           <Text style={styles.text}>
+//             Signup
+//             </Text>
+//         </TouchableOpacity>
+//       </View>
+//     );
+//   }
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#F5FCFF',
+//   },
+//   welcome: {
+//     fontSize: 20,
+//     textAlign: 'center',
+//     margin: 10,
+//   },
+//   instructions: {
+//     textAlign: 'center',
+//     color: '#333333',
+//     marginBottom: 5,
+//   },
+//   button: {
+//     height: 50,
+//     width: 150,
+//     color: 'black',
+//     backgroundColor: 'green',
+//     borderRadius: 10,
+//     justifyContent: 'center',
+//     margin: 5,
+
+//   },
+//   text: {
+//     width: '100%',
+//     padding: 10,
+//     textAlign: 'center'
+//   },
+
+// });
