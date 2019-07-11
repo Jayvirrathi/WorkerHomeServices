@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { View, Text, TouchableOpacity,PixelRatio, StyleSheet, TextInput, Image, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity,ScrollView,PixelRatio, StyleSheet, TextInput, Image, ImageBackground } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import ImagePicker from "react-native-image-picker";
@@ -86,7 +86,7 @@ export default class UserDetail extends React.Component {
 
 
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
                 <ImageBackground source={logo} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
 
@@ -185,7 +185,7 @@ export default class UserDetail extends React.Component {
                     {/* </LinearGradient> */}
 
                 </ImageBackground>
-            </View>
+            </ScrollView>
 
         )
     }
