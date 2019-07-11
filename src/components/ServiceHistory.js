@@ -8,7 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
 import Login from './Login';
-import Signup from './SignUp';
+import Signup from './Signup';
 
 
 

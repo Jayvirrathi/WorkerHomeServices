@@ -5,7 +5,8 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 
 import Home from './src/components/Home'
 import Login from './src/components/Login'
-import Signup from './src/components/SignUp'
+import Signup from './src/components/Signup'
+import UserDetail from './src/components/UserDetail'
 import BottomNav from './src/components/BottomNav'
 import ServiceList from './src/components/ServiceList'
 
@@ -17,11 +18,14 @@ Login: {
 Signup: {
     screen: Signup,
 },
+UserDetail: {
+  screen: UserDetail
+},
   BottomNav: {
     screen: BottomNav,
   },
 }, {
-    initialRouteName: 'BottomNav',
+    initialRouteName: 'Signup',
   });
 
 

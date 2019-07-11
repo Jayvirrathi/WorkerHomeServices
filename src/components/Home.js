@@ -5,7 +5,7 @@ import { SearchBar, Card, ListItem, Button, Icon } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import Login from './Login'
-import Signup from './SignUp'
+import Signup from './Signup'
 import ServiceList from './ServiceList'
 import ForgotPassword from './ForgotPassword'
 
