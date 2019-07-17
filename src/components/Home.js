@@ -1,115 +1,125 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
-import { SearchBar, Card, ListItem, Button, Icon } from 'react-native-elements';
+import { SearchBar, Card, ListItem, Button, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import ServiceList from './ServiceList';
 
-import Login from './Login'
-import Signup from './Signup'
-import ServiceList from './ServiceList'
-import ForgotPassword from './ForgotPassword'
-
-
-const users = [
-    {
-        name: 'Electronic Repair',
-        avatar: 'http://chittagongit.com/download/101717',
-    },
-
-    {
-        name: 'Plumber',
-        avatar: 'https://cdn.websites.hibu.com/7da2af4cb2454e0f9a5b63524adbc06d/dms3rep/multi/mobile/hhh1_revised.png',
-    },
-    {
-        name: 'Carpenter',
-        avatar: 'http://pluspng.com/img-png/carpentry-png-hd-512x512-pixel-512.png',
-    },
-    {
-        name: 'Painter',
-        avatar: 'https://fayetteville.mrcabinetpainter.com/wp-content/uploads/2018/08/mr-cabinet-painter-paintbrush-icon.png',
-    },
-    {
-        name: 'Cleaning',
-        avatar: 'http://sterlingcleaningservicesllc.com/wp-content/uploads/2016/07/cropped-sterling-cleaning-services-icon-1.png',
-    },
-
-    {
-        name: 'Pest Control',
-        avatar: 'http://www.pearservices.com/wp-content/uploads/2016/08/pest-control-icons.png',
-    },
-
-    {
-        name: 'Laptop Repair',
-        avatar: 'https://images.cellphonerepair.com/wp-content/uploads/2016/10/computer-repair-page.png',
-    }, {
-        name: 'Electrician',
-        avatar: 'https://cdn0.iconfinder.com/data/icons/colourful-education/250/bulb-512.png',
-    },
-]
 
 class Home extends React.Component {
-
 
     constructor() {
         super();
         this.state = {
+            user: false,
             search: '',
+            data: [],
         };
     }
 
 
-    static navigationOptions = {
-        title: 'Welcome',
-        // headerStyle: {
-        //     display: 'none',
-        // },
-    };
+    async componentWillMount() {
+        await fetch('https://admin-service87.herokuapp.com/services/')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ data: responseJson });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
 
 
     updateSearch = search => {
         this.setState({ search });
     };
-    render() {
-        const { search } = this.state;
-        const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <SearchBar
-                    placeholder="Type Here..."
-                    onChangeText={this.updateSearch}
-                    value={search}
-                    containerStyle={{ backgroundColor: 'transparent', borderWidth: 0 }}
-                    inputStyle={{ color: 'grey', backgroundColor: 'transparent' }}
-                    inputContainerStyle={{ borderWidth: 0 }}
-                    lightTheme={false}
-                    round={true}
-                />
 
-                <ScrollView>
-                    <View style={styles.cards}>
-                        {
-                            users.map((u, i) => {
-                                return (
-                                    <TouchableOpacity style={styles.cardContainer} key={i}
-                                        onPress={() => { navigate({ routeName: 'ServiceList', params: { hello: u.name } }) }}
-                                    >
-                                        <Card containerStyle={styles.card}>
-                                            <Image
-                                                style={styles.image}
-                                                resizeMode="cover"
-                                                source={{ uri: u.avatar }}
-                                            />
-                                            <Text style={styles.name}>{u.name}</Text>
-                                        </Card>
-                                    </TouchableOpacity>
-                                );
-                            })
-                        }
+    static navigationOptions = {
+        title: 'Welcome',
+        headerStyle: {
+            backgroundColor: '#007ceb',
+            display: 'none',
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            color: 'white',
+        },
+    };
+    render() {
+        const { search, data } = this.state;
+        const { navigate } = this.props.navigation;
+
+        if (data.length > 0) {
+            return (
+
+                <View style={styles.container}>
+
+                   
+
+                    <View style={{ backgroundColor: '#ff861b', }}>
+
+                        <Input
+                            value='Gandhinagar, Gujarat, India'
+                            underlineColorAndroid={'transparent'}
+                            inputContainerStyle={{ borderBottomWidth: 0, }}
+                            inputStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }}
+                            containerStyle={{ maxHeight: 32, alignSelf: 'flex-start', borderColor: 'white', borderWidth: 0, borderRadius: 10, marginLeft: 0 }}
+                            leftIcon={
+                                <Icon
+                                    name='location-arrow'
+                                    size={18}
+                                    color='white'
+                                    style={{ padding: 0 }}
+                                />
+                            }
+                            editable={false}
+                        />
+                        <SearchBar
+                            placeholder="Search for a service"
+                            onChangeText={this.updateSearch}
+                            value={search}
+                            containerStyle={{ backgroundColor: '#ff861b', borderBottomColor: '#ff861b', borderTopColor: '#ff861b', }}
+                            inputContainerStyle={{ backgroundColor: 'white', borderBottomColor: '#607fa7', borderTopColor: '#607fa7', }}
+                        />
                     </View>
-                </ScrollView>
-            </View>
-        )
+
+                    <ScrollView>
+
+
+                        <View style={styles.cards}>
+                            {
+                                data.map((u) => {
+                                    return (
+                                        <TouchableOpacity style={styles.cardContainer} key={u._id}
+                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: u, user: { _id: u._id, address: 'Home' } } }) }}
+                                        >
+                                            <Card containerStyle={styles.card}>
+                                                <Image
+                                                    style={styles.image}
+                                                    resizeMode="cover"
+                                                    source={{ uri: u.service_icon }}
+                                                />
+                                                <Text style={styles.name}>{u.service_name}</Text>
+                                            </Card>
+                                        </TouchableOpacity>
+                                    );
+                                })
+                            }
+                        </View>
+                    </ScrollView>
+                </View>
+            )
+        }
+        else {
+            return (
+                <View style={styles.ActivityContainer}>
+                    <ActivityIndicator size="large" color="#ff861b" />
+                </View>
+            )
+        }
+
     }
 }
 
@@ -119,15 +129,6 @@ class Home extends React.Component {
 const AppNavigator = createStackNavigator({
     Home: {
         screen: Home,
-    },
-    Login: {
-        screen: Login
-    },
-    Signup: {
-        screen: Signup
-    },
-    ForgotPassword:{
-        screen:ForgotPassword,
     },
     ServiceList: {
         screen: ServiceList,
@@ -146,6 +147,12 @@ export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
+    ActivityContainer: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+        justifyContent: 'center',
+    },
     container: {
         flex: 1,
         backgroundColor: '#F5FCFF',

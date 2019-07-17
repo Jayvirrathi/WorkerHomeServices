@@ -1,11 +1,12 @@
 
 
 import React from 'react';
-import { View, Text, TouchableOpacity,ScrollableView, StyleSheet, TextInput, Image ,ImageBackground} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image, ImageBackground } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -30,9 +31,16 @@ export default class Signup extends React.Component {
     };
 
     static navigationOptions = {
-        title: 'Login',
+        title: 'Signup',
         headerStyle: {
             display: 'none',
+        },
+        headerTitleStyle: {
+            fontWeight: '600',
+            color: 'gray',
+            fontSize: 16,
+            marginLeft: 0,
+            paddingLeft: 0,
         },
     };
 
@@ -48,76 +56,79 @@ export default class Signup extends React.Component {
             <View style={styles.container}>
 
                 {/* <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4485af', 'gray']} style={styles.linearGradient}> */}
-                <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%',backgroundColor:'transparent' }}>
-                    <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 40, marginBottom: 20 }}></Image>
+                <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
 
-                    <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Create Account</Text>
-                    <Input
-                        placeholder='Name'
-                        underlineColorAndroid={'transparent'}
-                        inputContainerStyle={{ borderBottomWidth: 0 }}
-                        containerStyle={styles.input}
-                        leftIcon={
-                            <Icon
-                                name='user'
-                                size={20}
-                                color='white'
-                                style={{ margin: 3 }}
-                            />
-                        }
-                        onChangeText={val => this.onChangeText("email", val)}
-                    />
+                    <ScrollView>
+                        <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 40, marginBottom: 20 }}></Image>
 
-                    <Input
-                        placeholder='Email'
-                        underlineColorAndroid={'transparent'}
-                        inputContainerStyle={{ borderBottomWidth: 0 }}
-                        containerStyle={styles.input}
-                        leftIcon={
-                            <Icon
-                                name='envelope-open-o'
-                                size={20}
-                                color='white'
-                                style={{ margin: 3 }}
-                            />
-                        }
-                        onChangeText={val => this.onChangeText("email", val)}
-                    />
-                    <Input
-                        placeholder="Password"
-                        secureTextEntry={true}
-                        inputContainerStyle={{ borderBottomWidth: 0 }}
-                        containerStyle={styles.input}
-                        leftIcon={
-                            <Icon
-                                name='lock'
-                                size={20}
-                                color='white'
-                                style={{ margin: 3 }}
-                            />
-                        }
-                        onChangeText={val => this.onChangeText("password", val)}
-                    />
+                        <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Create Account</Text>
+                        <Input
+                            placeholder='Name'
+                            underlineColorAndroid={'transparent'}
+                            inputContainerStyle={{ borderBottomWidth: 0 }}
+                            containerStyle={styles.input}
+                            leftIcon={
+                                <Icon
+                                    name='user'
+                                    size={20}
+                                    color='white'
+                                    style={{ margin: 3 }}
+                                />
+                            }
+                            onChangeText={val => this.onChangeText("email", val)}
+                        />
 
-                    <Input
-                        placeholder="Repeat Password"
-                        secureTextEntry={true}
-                        inputContainerStyle={{ borderBottomWidth: 0 }}
-                        containerStyle={styles.input}
-                        leftIcon={
-                            <Icon
-                                name='lock'
-                                size={20}
-                                color='white'
-                                style={{ margin: 3 }}
-                            />
-                        }
-                        onChangeText={val => this.onChangeText("password", val)}
-                    />
+                        <Input
+                            placeholder='Email'
+                            underlineColorAndroid={'transparent'}
+                            inputContainerStyle={{ borderBottomWidth: 0 }}
+                            containerStyle={styles.input}
+                            leftIcon={
+                                <Icon
+                                    name='envelope-open-o'
+                                    size={20}
+                                    color='white'
+                                    style={{ margin: 3 }}
+                                />
+                            }
+                            onChangeText={val => this.onChangeText("email", val)}
+                        />
+                        <Input
+                            placeholder="Password"
+                            secureTextEntry={true}
+                            inputContainerStyle={{ borderBottomWidth: 0 }}
+                            containerStyle={styles.input}
+                            leftIcon={
+                                <Icon
+                                    name='lock'
+                                    size={20}
+                                    color='white'
+                                    style={{ margin: 3 }}
+                                />
+                            }
+                            onChangeText={val => this.onChangeText("password", val)}
+                        />
+
+                        <Input
+                            placeholder="Repeat Password"
+                            secureTextEntry={true}
+                            inputContainerStyle={{ borderBottomWidth: 0 }}
+                            containerStyle={styles.input}
+                            leftIcon={
+                                <Icon
+                                    name='lock'
+                                    size={20}
+                                    color='white'
+                                    style={{ margin: 3 }}
+                                />
+                            }
+                            onChangeText={val => this.onChangeText("password", val)}
+                        />
 
 
-                    <Button title="Continue" buttonStyle={styles.button} onPress={() => navigate({ routeName: "UserDetail" })}></Button>
-                {/* </LinearGradient> */}
+                        <Button title="Continue" buttonStyle={styles.button} onPress={() => navigate({ routeName: "UserDetail" })}></Button>
+                    </ScrollView>
+                    {/* </LinearGradient> */}
                 </ImageBackground>
             </View>
 
@@ -155,158 +166,3 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
 });
-
-// import React from "react";
-// import { Button } from "react-native-elements";
-// import ImagePicker from "react-native-image-picker";
-// import {
-//   View,
-//   Text,
-//   TextInput,
-//   StyleSheet,
-//   ScrollView,
-//   PixelRatio,
-//   TouchableOpacity,
-//   Image
-// } from "react-native";
-
-
-// export default class SignUp extends React.Component {
-//   state = {
-//     name: "",
-//     password: "",
-//     email: "",
-//     phone_number: "",
-//     confirmpassword: "",
-//     ImageSource: null,
-//     address: "",
-//     gender: ""
-//   };
-//   onChangeText = (key, val) => {
-//     this.setState({ [key]: val });
-//   };
-//   //   signUp = async () => {
-//   //     const { username, password, email, phone_number } = this.state;
-//   //     try {
-//   //       // here place your signup logic
-//   //       console.log("user successfully signed up!: ", success);
-//   //     } catch (err) {
-//   //       console.log("error signing up: ", err);
-//   //     }
-//   //   };
-
-//   selectPhotoTapped() {
-//     const options = {
-//       quality: 1.0,
-//       maxWidth: 500,
-//       maxHeight: 500,
-//       storageOptions: {
-//         skipBackup: true
-//       }
-//     };
-//     ImagePicker.showImagePicker(options, response => {
-//       console.log("Response = ", response);
-
-//       if (response.didCancel) {
-//         console.log("User cancelled photo picker");
-//       } else if (response.error) {
-//         console.log("ImagePicker Error: ", response.error);
-//       } else if (response.customButton) {
-//         console.log("User tapped custom button: ", response.customButton);
-//       } else {
-//         let source = { uri: response.uri };
-
-//         // You can also display the image using data:
-//         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-//         this.setState({
-//           ImageSource: source
-//         });
-//       }
-//     });
-//   }
-
-//   render() {
-//     const { navigate } = this.props.navigation;
-//     return (
-//       <ScrollView>
-//         <View style={styles.container}>
-//           <TextInput
-//             style={styles.input}
-//             placeholder="Name"
-//             autoCapitalize="none"
-//             placeholderTextColor="white"
-//             onChangeText={val => this.onChangeText("name", val)}
-//           />
-
-
-
-
-//           <Button title="Signup" buttonStyle={styles.button} />
-//           <Text
-//             style={styles.goToLogin}
-//             onPress={() => navigate({ routeName: "Login" })}
-//           >
-//             Already have an Account? Login
-//           </Text>
-//         </View>
-//       </ScrollView>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     // alignItems: "center",
-//     marginVertical: 50
-//   },
-//   input: {
-//     width: 300,
-//     borderRadius: 25,
-//     alignSelf: "center",
-//     paddingHorizontal: 16,
-//     fontSize: 16,
-//     color: "black",
-//     marginVertical: 16,
-//     backgroundColor: "grey"
-//   },
-//   button: {
-//     width: "50%",
-//     alignSelf: "center",
-//     margin: 10,
-//     borderRadius: 10
-//   },
-//   buttonText: {
-//     fontSize: 16,
-//     fontWeight: "500",
-//     color: "#ffffff",
-//     textAlign: "center"
-//   },
-//   goToLogin: {
-//     fontWeight: "500",
-//     alignSelf: "center"
-//   },
-//   ImageContainer: {
-//     borderRadius: 10,
-//     width: 300,
-//     borderRadius: 25,
-//     height: 50,
-//     borderColor: "#9B9B9B",
-//     borderWidth: 1 / PixelRatio.get(),
-//     justifyContent: "center",
-//     alignSelf: "center",
-//     alignItems: "center",
-//     backgroundColor: "grey"
-//   },
-//   selectphoto: {
-//     color: "#ffffff"
-//   }
-// });
-
-
-
-
-
-
