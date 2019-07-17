@@ -78,7 +78,7 @@ const HistoryData = [
 
 class ServiceHistory extends React.Component {
     static navigationOptions = {
-        title: 'My Bookings',
+        title: 'History',
         headerStyle: {
             display: 'none',
         },
@@ -124,7 +124,7 @@ class ServiceHistory extends React.Component {
 
 
                     <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
-                        <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>My Bookings</Text>
+                        <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>History</Text>
                     </View>
                     <ScrollView>
                         <View style={styles.cards}>

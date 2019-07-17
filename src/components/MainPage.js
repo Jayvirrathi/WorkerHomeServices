@@ -1,69 +1,76 @@
-import React from 'react';
+
+import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
-import { SearchBar, ListItem, Input } from 'react-native-elements';
+import { SearchBar, ListItem, Input, Card, Button, Icon } from 'react-native-elements';
+import { List, Colors ,Badge,Avatar} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome';
-// import SubService from './SubService';
-// import ServiceList from './ServiceList';
+import SubService from './SubService';
+import ServiceList from './ServiceList';
 
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-const dataList = [
+const HistoryData = [
     {
-        id: 0,
-        title: "AC and Appliance Repair",
-        url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg",
-        sub_title: "Service | Repair | Installation",
-        sub_ser_list: [
-            {
-                id: 1,
-                title: "AC Service and Repair",
-                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
-            },
-            {
-                id: 2,
-                title: "Air Cooler Repair",
-                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
-            }
-        ],
+        name: 'Raju Painter',
+        type: 'Painter',
+        date: '26 June 2019',
+        phone: '+91-88985-68974',
+        status: 0,
     },
+
     {
-        id: 1,
-        title: "Electricians",
-        url: "http://solvitnow.com/wp-content/uploads/2018/05/common-home-electrical-work.jpg",
-        sub_title: "Service | Repair | Installation",
-        sub_ser_list: ['Fan,Iron'],
+        name: 'Ankit Parajapati',
+        type: 'Appliance & Electronic Repair',
+        date: '27 June 2019',
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
+
+
     {
-        id: 2,
-        title: "Plumbing worker",
-        url: "https://mrright.blob.core.windows.net/cdn/content/assets/2015-11/medium/e8b01d5d11a349389e97978152f76984-general%20plumbing%20work.jpg",
-        sub_title: "Repair | Installation | Projects",
+        name: 'Mehul Rana',
+        type: 'Laptop Repair',
+        date: '28 June 2019',
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
+
+
     {
-        id: 3,
-        title: "Carpenter",
-        url: "https://thenypost.files.wordpress.com/2015/07/shutterstock_131655707.jpg?quality=90&strip=all&w=618&h=410&crop=1",
-        sub_title: "Repair | Projects",
+        name: 'Animesh Rana',
+        type: 'Carpenter',
+        date: '29 June 2019',
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
+
+
     {
-        id: 4,
-        title: "Painter",
-        url: "https://img1.ibay.com.mv/is1/full/2019/04/item_2601576_769.jpg",
-        sub_title: "Repaint | Project",
+        name: 'Raj Mehta',
+        type: 'Painter',
+        date: '20 June 2019',
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
+
+
+
     {
-        id: 5,
-        title: "Cleaning",
-        url: "http://eulenmiddleast.com/wp-content/uploads/2017/02/cleaningservices.png",
-        sub_title: "Bathroom | Sofa | Kitchen",
+        name: 'Johan Martin',
+        type: 'Plumber',
+        date: '22 June 2019',
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
+
+
+
     {
-        id: 6,
-        title: "Pest Control",
-        url: "https://www.taskforce.com.au/image/pest-control/vic/whittlesea/taskforce-smoking-out-bugs/8746/",
-        sub_title: "Service",
+        name: 'Anjli Parajapati',
+        type: 'Electrician',
+        date: '28 June 2019',
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 ]
 
@@ -79,11 +86,12 @@ class Home extends React.Component {
     }
 
 
+    
     async componentWillMount() {
-        await fetch('https://admin-service87.herokuapp.com/services/')
+        await fetch('https://booking-service01.herokuapp.com/by_client_id/5d19bed4a11612274a2b98d1')
             .then((response) => response.json())
             .then((responseJson) => {
-                this.setState({ data: responseJson });
+                this.setState({ historyData: responseJson });
             })
             .catch((error) => {
                 console.error(error);
@@ -97,7 +105,7 @@ class Home extends React.Component {
     };
 
     static navigationOptions = {
-        title: 'Welcome',
+        title: 'Bookings',
         headerStyle: {
             backgroundColor: '#007ceb',
             display: 'none',
@@ -108,73 +116,71 @@ class Home extends React.Component {
         },
     };
     render() {
-        const { search, data } = this.state;
+
+      
+        const { search, login, historyData,data } = this.state;
         const { navigate } = this.props.navigation;
 
-        if (data.length > 0) {
+        if (!login) {
             return (
 
-                <View style={styles.container}>
+
+                <View style={styles.loginPage}>
 
 
-                    <View style={{ backgroundColor: '#ff861b', }}>
-
-                        <Input
-                            value='Welcome' /*'Gandhinagar, Gujarat, India' */
-                            underlineColorAndroid={'transparent'}
-                            inputContainerStyle={{ borderBottomWidth: 0, }}
-                            inputStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }}
-                            containerStyle={{ maxHeight: 32, alignSelf: 'flex-start', borderColor: 'white', borderWidth: 0, borderRadius: 10, marginLeft: 0 }}
-                            // leftIcon={
-                            //     <Icon
-                            //         name='location-arrow'
-                            //         size={18}
-                            //         color='white'
-                            //         style={{ padding: 0 }}
-                            //     />
-                            // }
-                            editable={false}
-                        />
-                        <SearchBar
-                            placeholder="Search for a service"
-                            onChangeText={this.updateSearch}
-                            value={search}
-                            containerStyle={{ backgroundColor: '#ff861b', borderBottomColor: '#ff861b', borderTopColor: '#ff861b', }}
-                            inputContainerStyle={{ backgroundColor: 'white', borderBottomColor: '#607fa7', borderTopColor: '#607fa7', }}
-                        />
+                    <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
+                        <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>Bookings</Text>
                     </View>
+                    <ScrollView>
+                        <View style={styles.cards}>
+                            {
+                                HistoryData.map((u, i) => {
+                                    return (
+                                        <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
+                                            <Badge  style={{borderRadius:10,backgroundColor:u.status?"green":"orange",position:"absolute",top:0,right:0}}>{u.status?"Completed":"Pending"}</Badge>
+                                            <Text style={styles.label}>Service Type: {u.type}</Text>
+                                            <Text style={styles.label}>Date: {u.date}</Text>
+                                            <Text style={styles.label}>Contact Number: {u.phone}</Text>
+                                            {/* <Text onPress={() => alert(u.name)} style={styles.name}>{u.name}</Text> */}
+                                        </Card>
+                                    );
+                                })
+                            }
+                        </View>
+                    </ScrollView>
 
-                    <ScrollView style={{ flex: 1, flexDirection: "column", width: "100%", padding: 5 }}>
+                </View>
+            )
+        }
+        return (
+            <View style={styles.container}>
+                <Card>
+                    <Text style={styles.title}>Service History</Text>
+                </Card>
+                <ScrollView>
+                    <View style={styles.cards}>
                         {
-                            dataList.map((obj) => {
+                            HistoryData.map((u, i) => {
                                 return (
-                                    <Card
-                                        key={obj.id}
-                                        style={{ margin: 2, }}
-                                        // onPress={() => { navigate({ routeName: 'SubService', params: { service: obj,user: { _id: null, address: 'Home' } } }) }}
-                                        // onPress={() => { navigate({ routeName: 'ServiceList', params: { service: obj, user: { _id: null, address: 'Home' } } }) }}
-
-                                    >
-                                        <Text style={styles.leftText}>{obj.title}</Text>
-                                        <Text style={styles.leftSubText}>{obj.sub_title}</Text>
-                                        <Image style={styles.rightImage} source={{ uri: obj.url }}></Image>
+                                    <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
+                                        {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
+                                        {/* <Text style={styles.label}>Worker Name: {u.name}</Text> */}
+                                        <Text style={styles.label}>Service Type: {u.type}</Text>
+                                        <Text style={styles.label}>Date: {u.date}</Text>
+                                        <Text style={styles.label}>Contact Number: {u.phone}</Text>
+                                        {/* <Text onPress={() => alert(u.name)} style={styles.name}>{u.name}</Text> */}
                                     </Card>
-                                )
+                                );
                             })
                         }
-                    </ScrollView>
-                </View>
-            )
-        }
-        else {
-            return (
-                <View style={styles.ActivityContainer}>
-                    <ActivityIndicator size="large" color="#ff861b" />
-                </View>
-            )
-        }
+                    </View>
+                </ScrollView>
+                {/* </Card> */}
+            </View>
+        )
 
     }
+
 }
 
 
@@ -184,12 +190,12 @@ const AppNavigator = createStackNavigator({
     Home: {
         screen: Home,
     },
-    // SubService: {
-    //     screen: SubService,
-    // },
-    // ServiceList: {
-    //     screen: ServiceList,
-    // }
+    SubService: {
+        screen: SubService,
+    },
+    ServiceList: {
+        screen: ServiceList,
+    }
 }, {
         initialRouteName: 'Home',
     });
@@ -204,41 +210,62 @@ export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
-    ActivityContainer: {
+    container: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+    },
+    loginPage: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+        overflow: 'scroll'
+    },
+
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        padding: 0,
+        textAlign: 'center',
+        color: 'black'
+    },
+    cards: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        width: '100%',
+        padding: 5,
+    },
+    card: {
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        width: '95%',
+        margin: 5,
+    },
+
+    label: {
+        fontWeight: '500',
+        fontSize: 12,
+        margin: 2,
+    },
+    name: {
+        textAlign: 'center',
+        marginTop: 15,
+    },
+
+    loginPage: {
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: '100%',
         justifyContent: 'center',
+
     },
-    container: {
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-        width: '100%'
+    button: {
+        width: '80%',
+        alignSelf: 'center',
+        margin: 10,
+        borderRadius: 10,
     },
-    leftText: {
-        position: 'absolute',
-        top: "20%",
-        left: 20,
-        fontWeight: 'bold',
-        fontSize: 16,
-        paddingTop: 10,
-        color: "gray",
-    },
-    leftSubText: {
-        position: 'absolute',
-        top: "40%",
-        left: 20,
-        fontWeight: '500',
-        fontSize: 12,
-        paddingTop: 10,
-        color: "orange",
-    },
-    rightImage: {
-        alignSelf: "flex-end",
-        width: 100,
-        height: 100,
-        margin: 5,
-        marginRight: 15,
-        borderRadius: 5,
-    }
+
+
 });
