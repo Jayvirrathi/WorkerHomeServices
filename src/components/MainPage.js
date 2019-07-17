@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
@@ -11,66 +10,71 @@ import ServiceList from './ServiceList';
 
 const HistoryData = [
     {
-        name: 'Raju Painter',
-        type: 'Painter',
-        date: '26 June 2019',
+        name: 'Johan Martin',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
         phone: '+91-88985-68974',
+        date: '22 July 2019 9:00 AM',
+        description:"Tap water Leak",
         status: 0,
+    },
+    {
+        name: 'Raju Painter',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
+        phone: '+91-88985-68974',
+        date: '22 July 2019 10:00 AM',
+        description:"AC Repairing",
+        status: 0,
+        
+       
     },
 
     {
         name: 'Ankit Parajapati',
-        type: 'Appliance & Electronic Repair',
-        date: '27 June 2019',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
+        date: '27 July 2019 3:00 PM',
         phone: '+91-88985-68974',
-        status: "Completed",
+        description:"AC Fitting",
+        status:"awaiting",
     },
 
 
     {
         name: 'Mehul Rana',
-        type: 'Laptop Repair',
-        date: '28 June 2019',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
+        date: '28 July 2019 6:00 PM ',
         phone: '+91-88985-68974',
-        status: "Completed",
+        description:"Door Lock repairing",
+        status:"awaiting",
     },
 
 
     {
         name: 'Animesh Rana',
-        type: 'Carpenter',
-        date: '29 June 2019',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
+        date: '29 July 2019 8:00 PM',
         phone: '+91-88985-68974',
-        status: "Completed",
+        description:"Cleaning",
+        status:"awaiting",
     },
 
 
     {
         name: 'Raj Mehta',
-        type: 'Painter',
-        date: '20 June 2019',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
+        date: '30 July 2019 10:00 PM',
         phone: '+91-88985-68974',
-        status: "Completed",
+        description:"Pest Control",
+        status:"awaiting",
     },
-
-
-
-    {
-        name: 'Johan Martin',
-        type: 'Plumber',
-        date: '22 June 2019',
-        phone: '+91-88985-68974',
-        status: "Completed",
-    },
-
 
 
     {
         name: 'Anjli Parajapati',
-        type: 'Electrician',
-        date: '28 June 2019',
+        address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
+        date: ' 30 July 2019 3:00 PM',
         phone: '+91-88985-68974',
-        status: "Completed",
+        description:"RO Repair",
+        status:"awaiting",
     },
 ]
 
@@ -129,7 +133,7 @@ class Home extends React.Component {
 
 
                     <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
-                        <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>Bookings</Text>
+                        <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>Bookings Request</Text>
                     </View>
                     <ScrollView>
                         <View style={styles.cards}>
@@ -137,10 +141,12 @@ class Home extends React.Component {
                                 HistoryData.map((u, i) => {
                                     return (
                                         <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
-                                            <Badge  style={{borderRadius:10,backgroundColor:u.status?"green":"orange",position:"absolute",top:0,right:0}}>{u.status?"Completed":"Pending"}</Badge>
-                                            <Text style={styles.label}>Service Type: {u.type}</Text>
+                                            <Badge  style={{borderRadius:10,backgroundColor:u.status?"red":"blue",position:"absolute",top:0,right:0}}>{u.status?"Awaiting":"OnGoing"}</Badge>
+                                            <Text style={styles.label}>Addess: {u.address}</Text>
                                             <Text style={styles.label}>Date: {u.date}</Text>
                                             <Text style={styles.label}>Contact Number: {u.phone}</Text>
+                                            <Text style={styles.label}>Description: {u.description}</Text>
+                                            
                                             {/* <Text onPress={() => alert(u.name)} style={styles.name}>{u.name}</Text> */}
                                         </Card>
                                     );
@@ -164,10 +170,10 @@ class Home extends React.Component {
                                 return (
                                     <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
                                         {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
-                                        {/* <Text style={styles.label}>Worker Name: {u.name}</Text> */}
+                                        <Text style={styles.label}>Customer Name: {u.name}</Text>
                                         <Text style={styles.label}>Service Type: {u.type}</Text>
-                                        <Text style={styles.label}>Date: {u.date}</Text>
                                         <Text style={styles.label}>Contact Number: {u.phone}</Text>
+                                        <Text style={styles.label}>Date: {u.date}</Text>
                                         {/* <Text onPress={() => alert(u.name)} style={styles.name}>{u.name}</Text> */}
                                     </Card>
                                 );
