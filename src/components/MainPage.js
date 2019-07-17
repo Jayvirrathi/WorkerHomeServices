@@ -21,9 +21,9 @@ const HistoryData = [
         name: 'Raju Painter',
         address: 'Keas 69 Str 15234, Chalandri Athens,Greece',
         phone: '+91-88985-68974',
-        date: '22 July 2019 10:00 AM',
+        date: '23 July 2019 10:00 AM',
         description:"AC Repairing",
-        status: 0,
+        status:"awaiting",
         
        
     },

@@ -16,7 +16,7 @@ const HistoryData = [
         type: 'Painter',
         date: '26 June 2019',
         phone: '+91-88985-68974',
-        status: 0,
+        status: "Completed",
     },
 
     {
