@@ -37,42 +37,42 @@ const HistoryData = [
     },
 
 
-    {
-        name: 'Animesh Rana',
-        type: 'Carpenter',
-        date: '29 June 2019',
-        phone: '+91-88985-68974',
-        status: "Completed",
-    },
+    // {
+    //     name: 'Animesh Rana',
+    //     type: 'Carpenter',
+    //     date: '29 June 2019',
+    //     phone: '+91-88985-68974',
+    //     status: "Completed",
+    // },
 
 
-    {
-        name: 'Raj Mehta',
-        type: 'Painter',
-        date: '20 June 2019',
-        phone: '+91-88985-68974',
-        status: "Completed",
-    },
-
-
-
-    {
-        name: 'Johan Martin',
-        type: 'Plumber',
-        date: '22 June 2019',
-        phone: '+91-88985-68974',
-        status: "Completed",
-    },
+    // {
+    //     name: 'Raj Mehta',
+    //     type: 'Painter',
+    //     date: '20 June 2019',
+    //     phone: '+91-88985-68974',
+    //     status: "Completed",
+    // },
 
 
 
-    {
-        name: 'Anjli Parajapati',
-        type: 'Electrician',
-        date: '28 June 2019',
-        phone: '+91-88985-68974',
-        status: "Completed",
-    },
+    // {
+    //     name: 'Johan Martin',
+    //     type: 'Plumber',
+    //     date: '22 June 2019',
+    //     phone: '+91-88985-68974',
+    //     status: "Completed",
+    // },
+
+
+
+    // {
+    //     name: 'Anjli Parajapati',
+    //     type: 'Electrician',
+    //     date: '28 June 2019',
+    //     phone: '+91-88985-68974',
+    //     status: "Completed",
+    // },
 ]
 
 
@@ -185,12 +185,12 @@ const AppNavigator = createStackNavigator({
     ServiceHistory: {
         screen: ServiceHistory
     },
-    Login: {
-        screen: Login,
-    },
-    Signup: {
-        screen: Signup,
-    },
+    // Login: {
+    //     screen: Login,
+    // },
+    // Signup: {
+    //     screen: Signup,
+    // },
 }, {
         initialRouteName: 'ServiceHistory',
     });

@@ -34,6 +34,7 @@ class Profile extends React.Component {
         this.state = {
             search: '',
             user: false,
+            login:true,
         };
         this.loginHandler = this.loginHandler.bind(this);
     }
@@ -121,14 +122,14 @@ class Profile extends React.Component {
                 <View style={styles.contaistylesner}>
                     <ScrollView>
                         <View style={styles.container}>
-                            <Card title={user.name} >
+                            <Card title="Raju Bhai" >
                                 <Image source={{ uri: user.image }} style={styles.image}></Image>
                                 <Badge onPress={() => { alert('Profile Edit...') }} badgeStyle={styles.editProfile} value='Update Profile' status="primary" />
                             </Card>
-                            <Card title="Email" titleStyle={styles.text}><Text>{user.email}</Text></Card>
+                            <Card title="Email" titleStyle={styles.text}><Text>rajubhai@gmail.com</Text></Card>
                             <Card title="Contact" titleStyle={styles.text}><Text>{user.phone}</Text></Card>
-                            <Card title="Address" titleStyle={styles.text}><Text>{user.address}</Text></Card>
-                            <Card title="Date of birth" titleStyle={styles.text}><Text>{user.date_of_birth}</Text></Card>
+                            <Card title="Address" titleStyle={styles.text}><Text>24 Sargasan Society,Sector-7B</Text></Card>
+                            <Card title="Date of birth" titleStyle={styles.text}><Text>19 July 1987</Text></Card>
                             <Button title='Logout' buttonStyle={styles.logout} onPress={() => this.logoutHandler()}></Button>
                         </View>
                     </ScrollView>
