@@ -2,18 +2,42 @@
 
 
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity,Picker, StyleSheet, TextInput, Image, ImageBackground } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import ImagePicker from "react-native-image-picker";
-
+import MultiSelect from 'react-native-multiple-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
-
 import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const logo = require('../assets/back.png');
+const items = [
+  {
+  id: 'nahs75a5sg',
+  name: 'Plumber',
+},  {
+  id: 'sdhyaysdj',
+  name: 'Carpenter',
+}, {
+  id: 'suudydjdsg',
+  name: 'electrician',
+},
+{
+  id: 'sdhyaydfgdsf',
+  name: 'Painter',
+}, 
+{
+  id: 'sdhyaydsfg',
+  name: 'Cleaner',
+}, 
+{
+  id: 'sdhyayshkjhk',
+  name: 'Pest Controller',
+}, 
+
+];
 
 export default class UserDetail extends React.Component {
 
@@ -24,11 +48,19 @@ export default class UserDetail extends React.Component {
             email: '',
             password: '',
             ImageSource: null,
+            selectedItems :[],
         };
 
     }
 
+    state = {
+      selectedItems :[]
+    };
 
+    onSelectedItemsChange = selectedItems => {
+      this.setState({ selectedItems });
+    }
+    
     onChangeText = (key, val) => {
         this.setState({ [key]: val });
     };
@@ -91,6 +123,7 @@ export default class UserDetail extends React.Component {
             { label: 'Male', value: 0 },
             { label: 'Female', value: 1 }
         ];
+        const { selectedItems } = this.state;
 
 
         return (
@@ -119,7 +152,8 @@ export default class UserDetail extends React.Component {
                 )}
             </View>
           </TouchableOpacity>
-                       
+
+         
                         <Input
                             placeholder='Phone Number'
                             underlineColorAndroid={'transparent'}
@@ -154,7 +188,34 @@ export default class UserDetail extends React.Component {
                             }
                             onChangeText={val => this.onChangeText("email", val)}
                         />
-
+<View style={{width:"80%",alignSelf:"center",backgroundColor:"transparent",borderRadius:50,marginTop:20}}>
+ <MultiSelect
+containerStyle={{width:"90%",alignSelf:"center",backgroundColor:"transparent",padding:5,borderRadius:50}}
+ inputContainerStyle={{width:"90%",alignSelf:"center",backgroundColor:"transparent",padding:5}}
+ headerStyle={{borderRadius:50,backgroundColor:"transparent"}}
+ style={{backgroundColor:"transparent"}}
+ buttonStyle={{backgroundColor:"transparent",borderRadius:50,borderWidth:1,}}
+            hideTags
+            items={items}
+            uniqueKey="id"
+            ref={(component) => { this.multiSelect = component }}
+            onSelectedItemsChange={this.onSelectedItemsChange}
+            selectedItems={selectedItems}
+            selectText="Select Type"
+            onChangeInput={ (text)=> console.log(text)}
+            altFontFamily="ProximaNova-Light"
+            tagRemoveIconColor="#CCC"
+            tagBorderColor="#CCC"
+            tagTextColor="#CCC"
+            selectedItemTextColor="#CCC"
+            selectedItemIconColor="#CCC"
+            itemTextColor="#000"
+            displayKey="name"
+            
+            submitButtonColor="orange"
+            submitButtonText="Submit"
+          />
+          </View>
 
                         <View style={{ borderColor: 'white', borderWidth: 1, borderRadius: 5, margin: 15, width: '80%', alignSelf: 'center', padding: 10 }}>
 
@@ -201,8 +262,12 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         // backgroundColor: 'rgba(255, 0, 0, 0.3)',
+        justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#fff'
 
     },
+
     linearGradient: {
         flex: 1,
     },
