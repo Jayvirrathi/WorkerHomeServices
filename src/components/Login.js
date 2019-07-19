@@ -5,12 +5,12 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-
 const logo = require('../assets/logo.png');
 const backgroundImage = require('../assets/back.png');
 
 
 export default class Login extends React.Component {
+    
 
     static navigationOptions = {
         title: 'Login',
@@ -46,8 +46,9 @@ export default class Login extends React.Component {
     }
 
     render() {
-
+       
         const { navigate } = this.props.navigation;
+            const { loginHandler } = this.props.navigation.state.params;
 
         return (
             <View style={styles.container}>
@@ -55,7 +56,7 @@ export default class Login extends React.Component {
 
                     <ScrollView>
                         <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 80, marginBottom: 20 }}></Image>
-                        <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Home Services</Text>
+                        <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Worker Services</Text>
                         <Input
                             placeholder='Email'
                             underlineColorAndroid={'transparent'}
@@ -87,7 +88,12 @@ export default class Login extends React.Component {
                             onChangeText={val => this.onChangeText("password", val)}
                         />
                         {/* <Button title="Login" buttonStyle={styles.button} ></Button> */}
-                        <Button title="Login" buttonStyle={styles.button} onPress={() => { this.setState({ user: true }) }}></Button>
+                        <Button title="Login" buttonStyle={styles.button} 
+                        //onPress={() => navigate({ routeName: "MainPage" })}
+                        onPress={() => { loginHandler(); this.props.navigation.pop(1) }}
+                        >
+
+                        </Button>
 
                         <View style={{ alignSelf: 'center', textAlign: 'center', flex: 1, alignContent: 'space-between', justifyContent: 'center' }}>
                             <Text style={styles.bottomText} onPress={() => navigate({ routeName: "ForgotPassword" })}>Forgot Password ?

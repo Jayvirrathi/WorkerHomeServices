@@ -6,6 +6,7 @@ import { List, Colors ,Badge,Avatar} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import SubService from './SubService';
 import ServiceList from './ServiceList';
+import Login from './Login'
 
 
 const HistoryData = [
@@ -86,6 +87,7 @@ class Home extends React.Component {
             user: false,
             search: '',
             data: [],
+            login:false,
         };
     }
 
@@ -103,6 +105,10 @@ class Home extends React.Component {
     }
 
 
+    loginHandler = () => {
+        this.setState({ login: true, user: {} });
+        // alert(this.state.login);
+    }
 
     updateSearch = search => {
         this.setState({ search });
@@ -125,7 +131,7 @@ class Home extends React.Component {
         const { search, login, historyData,data } = this.state;
         const { navigate } = this.props.navigation;
 
-        if (!login) {
+        if (login) {
             return (
 
 
@@ -160,28 +166,10 @@ class Home extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Card>
-                    <Text style={styles.title}>Service History</Text>
-                </Card>
-                <ScrollView>
-                    <View style={styles.cards}>
-                        {
-                            HistoryData.map((u, i) => {
-                                return (
-                                    <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
-                                        {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
-                                        <Text style={styles.label}>Customer Name: {u.name}</Text>
-                                        <Text style={styles.label}>Service Type: {u.type}</Text>
-                                        <Text style={styles.label}>Contact Number: {u.phone}</Text>
-                                        <Text style={styles.label}>Date: {u.date}</Text>
-                                        {/* <Text onPress={() => alert(u.name)} style={styles.name}>{u.name}</Text> */}
-                                    </Card>
-                                );
-                            })
-                        }
-                    </View>
-                </ScrollView>
-                {/* </Card> */}
+               <Text
+                        // style={{ fontWeight: '700', textAlign: 'center', width: 90, color: 'black', padding: 15, borderColor: 'black', borderWidth: 1, borderRadius: 3 }}
+                        onLayout={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
+                    ></Text>
             </View>
         )
 
@@ -201,6 +189,9 @@ const AppNavigator = createStackNavigator({
     },
     ServiceList: {
         screen: ServiceList,
+    },
+    Login:{
+        screen:Login,
     }
 }, {
         initialRouteName: 'Home',
