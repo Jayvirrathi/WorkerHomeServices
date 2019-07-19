@@ -27,7 +27,13 @@ import { List, Colors, Badge, Avatar } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import SubService from './SubService';
 import ServiceList from './ServiceList';
+
 import Login from './Login';
+import Signup from './Signup';
+import UserDetail from './UserDetail'
+import ForgotPassword from './ForgotPassword';
+
+
 
 // var HistoryData = [
 //     {
@@ -212,9 +218,6 @@ class Home extends React.Component {
                                 return (
                                     <TouchableOpacity
                                         key={u.id}
-                                        onPress={() =>
-                                            alert('Press a button!\nEither OK or Cancel.')
-                                        }
                                         style={{ width: '100%' }}
                                     >
                                         <Card
@@ -295,8 +298,17 @@ const AppNavigator = createStackNavigator(
             screen: ServiceList
         },
         Login: {
-            screen: Login
-        }
+            screen: Login,
+        },
+        Signup: {
+            screen: Signup,
+        },
+        UserDetail: {
+            screen: UserDetail,
+        },
+        ForgotPassword: {
+            screen: ForgotPassword,
+        },
     },
     {
         initialRouteName: 'Home'

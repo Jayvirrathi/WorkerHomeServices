@@ -151,18 +151,18 @@ const AppNavigator = createStackNavigator({
     Profile: {
         screen: Profile,
     },
-    Login: {
-        screen: Login,
-    },
-    Signup: {
-        screen: Signup,
-    },
-    UserDetail: {
-        screen: UserDetail,
-    },
-    ForgotPassword: {
-        screen: ForgotPassword,
-    },
+    // Login: {
+    //     screen: Login,
+    // },
+    // Signup: {
+    //     screen: Signup,
+    // },
+    // UserDetail: {
+    //     screen: UserDetail,
+    // },
+    // ForgotPassword: {
+    //     screen: ForgotPassword,
+    // },
 },
 );
 
