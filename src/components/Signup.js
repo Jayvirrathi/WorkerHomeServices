@@ -11,7 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 
 const logo = require('../assets/logo.png');
-const backgroundImage = require('../assets/back.png');
+const backgroundImage = require('../assets/back.jpg');
 
 export default class Signup extends React.Component {
 

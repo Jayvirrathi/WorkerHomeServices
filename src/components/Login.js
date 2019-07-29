@@ -1,16 +1,29 @@
-
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image, ImageBackground } from 'react-native';
-import { Button } from 'react-native-elements';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    TextInput,
+    Image,
+    ImageBackground
+} from 'react-native';
+import {
+    Button
+} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
+import {
+    Input
+} from 'react-native-elements';
+import {
+    ScrollView
+} from 'react-native-gesture-handler';
 const logo = require('../assets/logo.png');
-const backgroundImage = require('../assets/back.png');
+const backgroundImage = require('../assets/back.jpg');
 
 
 export default class Login extends React.Component {
-    
+
 
     static navigationOptions = {
         title: 'Login',
@@ -38,7 +51,9 @@ export default class Login extends React.Component {
 
 
     onChangeText = (key, val) => {
-        this.setState({ [key]: val });
+        this.setState({
+            [key]: val
+        });
     };
 
     pressHandler = () => {
@@ -46,66 +61,183 @@ export default class Login extends React.Component {
     }
 
     render() {
-       
-        const { navigate } = this.props.navigation;
-            const { loginHandler } = this.props.navigation.state.params;
 
-        return (
-            <View style={styles.container}>
-                <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+        const {
+            navigate
+        } = this.props.navigation;
+        const {
+            loginHandler
+        } = this.props.navigation.state.params;
 
-                    <ScrollView>
-                        <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 80, marginBottom: 20 }}></Image>
-                        <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Worker Services</Text>
-                        <Input
-                            placeholder='Email'
-                            underlineColorAndroid={'transparent'}
-                            inputContainerStyle={{ borderBottomWidth: 0 }}
-                            containerStyle={{ width: '80%', alignSelf: 'center', borderColor: 'white', borderWidth: 1, borderRadius: 100, margin: 15 }}
-                            leftIcon={
-                                <Icon
-                                    name='user'
-                                    size={24}
-                                    color='white'
-                                    style={{ margin: 3 }}
-                                />
-                            }
-                            onChangeText={val => this.onChangeText("email", val)}
-                        />
-                        <Input
-                            placeholder="Password"
-                            secureTextEntry={true}
-                            inputContainerStyle={{ borderBottomWidth: 0 }}
-                            containerStyle={{ width: '80%', alignSelf: 'center', borderColor: 'white', borderWidth: 1, borderRadius: 100, margin: 15 }}
-                            leftIcon={
-                                <Icon
-                                    name='lock'
-                                    size={24}
-                                    color='white'
-                                    style={{ margin: 3 }}
-                                />
-                            }
-                            onChangeText={val => this.onChangeText("password", val)}
-                        />
-                        {/* <Button title="Login" buttonStyle={styles.button} ></Button> */}
-                        <Button title="Login" buttonStyle={styles.button} 
-                        //onPress={() => navigate({ routeName: "MainPage" })}
-                        onPress={() => { loginHandler(); this.props.navigation.pop(1) }}
-                        >
+        return ( <
+                View style = {
+                    styles.container
+                } >
+                <
+                ImageBackground source = {
+                    backgroundImage
+                }
+                style = {
+                    {
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'transparent'
+                    }
+                } >
 
-                        </Button>
+                <
+                ScrollView >
+                <
+                Image source = {
+                    logo
+                }
+                style = {
+                    {
+                        width: 120,
+                        height: 120,
+                        alignSelf: 'center',
+                        marginTop: 80,
+                        marginBottom: 20
+                    }
+                } > < /Image> <
+                Text style = {
+                    {
+                        fontWeight: "700",
+                        fontSize: 24,
+                        textAlign: 'center',
+                        marginBottom: 20,
+                        color: 'white'
+                    }
+                } > Worker Services < /Text> <
+                Input placeholder = 'Email'
+                underlineColorAndroid = {
+                    'transparent'
+                }
+                inputContainerStyle = {
+                    {
+                        borderBottomWidth: 0
+                    }
+                }
+                containerStyle = {
+                    {
+                        width: '80%',
+                        alignSelf: 'center',
+                        borderColor: 'white',
+                        borderWidth: 1,
+                        borderRadius: 100,
+                        margin: 15
+                    }
+                }
+                leftIcon = {
+                    <
+                    Icon
+                    name = 'user'
+                    size = {
+                        24
+                    }
+                    color = 'white'
+                    style = {
+                        {
+                            margin: 3
+                        }
+                    }
+                    />
+                }
+                onChangeText = {
+                    val => this.onChangeText("email", val)
+                }
+                /> <
+                Input placeholder = "Password"
+                secureTextEntry = {
+                    true
+                }
+                inputContainerStyle = {
+                    {
+                        borderBottomWidth: 0
+                    }
+                }
+                containerStyle = {
+                    {
+                        width: '80%',
+                        alignSelf: 'center',
+                        borderColor: 'white',
+                        borderWidth: 1,
+                        borderRadius: 100,
+                        margin: 15
+                    }
+                }
+                leftIcon = {
+                    <
+                    Icon
+                    name = 'lock'
+                    size = {
+                        24
+                    }
+                    color = 'white'
+                    style = {
+                        {
+                            margin: 3
+                        }
+                    }
+                    />
+                }
+                onChangeText = {
+                    val => this.onChangeText("password", val)
+                }
+                /> {
+                /* <Button title="Login" buttonStyle={styles.button} ></Button> */
+            } <
+            Button title = "Login"
+        buttonStyle = {
+            styles.button
+        }
+        //onPress={() => navigate({ routeName: "MainPage" })}
+        onPress = {
+                () => {
+                    loginHandler();
+                    this.props.navigation.pop(1)
+                }
+            } >
 
-                        <View style={{ alignSelf: 'center', textAlign: 'center', flex: 1, alignContent: 'space-between', justifyContent: 'center' }}>
-                            <Text style={styles.bottomText} onPress={() => navigate({ routeName: "ForgotPassword" })}>Forgot Password ?
-                            <Text style={styles.creteAcc} onPress={() => navigate({ routeName: "Signup" })}>                                   Create Account</Text>
-                            </Text>
-                        </View>
-                    </ScrollView>
-                </ImageBackground>
-            </View>
+            <
+            /Button>
 
-        )
-    }
+            <
+            View style = {
+                {
+                    alignSelf: 'center',
+                    textAlign: 'center',
+                    flex: 1,
+                    alignContent: 'space-between',
+                    justifyContent: 'center'
+                }
+            } >
+            <
+            Text style = {
+                styles.bottomText
+            }
+        onPress = {
+                () => navigate({
+                    routeName: "ForgotPassword"
+                })
+            } > Forgot Password ?
+            <
+            Text style = {
+                styles.creteAcc
+            }
+        onPress = {
+            () => navigate({
+                routeName: "Signup"
+            })
+        } > Create Account < /Text> < /
+        Text > <
+            /View> < /
+        ScrollView > <
+            /ImageBackground> < /
+        View >
+
+    )
+}
 }
 
 
